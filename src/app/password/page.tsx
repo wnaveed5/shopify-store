@@ -195,7 +195,7 @@ export default function EarlyAccessPage() {
               
               {status === 'success' && !isPasswordMode && (
                 <div className="password-success">
-                  Thank you! You'll receive early access updates soon. Redirecting...
+                  Thank you! You&apos;ll receive early access updates soon. Redirecting...
                 </div>
               )}
               

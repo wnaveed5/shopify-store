@@ -178,7 +178,7 @@ export default function NewsletterSignup() {
       
       {status === 'success' && (
         <div className="newsletter-success">
-          Thank you for subscribing! You'll receive our latest updates soon.
+          Thank you for subscribing! You&apos;ll receive our latest updates soon.
         </div>
       )}
       

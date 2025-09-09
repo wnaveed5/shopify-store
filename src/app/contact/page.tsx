@@ -9,7 +9,7 @@ export default function ContactPage() {
         <div className="contact-header">
           <h1 className="contact-title">Contact Us</h1>
           <p className="contact-subtitle">
-            We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+            We&apos;d love to hear from you. Send us a message and we&apos;ll respond as soon as possible.
           </p>
         </div>
 
