@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
+import ConditionalLayout from "@/components/ConditionalLayout";
 import { CartProvider } from "@/contexts/CartContext";
 
 const geistSans = Geist({
@@ -24,9 +24,9 @@ export const metadata: Metadata = {
   title: "Homura Store",
   description: "Premium clothing and accessories",
   icons: {
-    icon: '/favicon.svg',
-    shortcut: '/favicon.svg',
-    apple: '/favicon.svg',
+    icon: '/favicon.svg?v=2',
+    shortcut: '/favicon.svg?v=2',
+    apple: '/favicon.svg?v=2',
   },
 };
 
@@ -45,8 +45,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} antialiased`}
       >
         <CartProvider>
-          <Header />
-          {children}
+          <ConditionalLayout>
+            {children}
+          </ConditionalLayout>
         </CartProvider>
       </body>
     </html>

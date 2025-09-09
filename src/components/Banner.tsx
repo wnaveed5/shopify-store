@@ -29,12 +29,14 @@ export default function Banner() {
   }, []);
 
   const desktopImages = [
+    '/images/Adobe Express - file2.jpg',
     '/images/Adobe Express - file.jpg',
-    '/images/Adobe Express - file1.jpg',
-    '/images/Adobe Express - file2.jpg'
+    '/images/Adobe Express - file1.jpg'
   ];
 
   const mobileImages = [
+    '/images/homura 4.png',
+    '/images/HOMURA outdoor-01.jpeg',
     '/images/homura 6.png',
     '/images/HOMURA 8.jpg',
     '/images/HOMURA outdoor 9.jpg'
