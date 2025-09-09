@@ -1337,8 +1337,8 @@ body {
   content: '';
   position: absolute;
   bottom: 0;
-  left: -5rem;
-  right: -5rem;
+  left: -0.5rem;
+  right: -0.5rem;
   height: 1px;
   background-color: #000000;
   z-index: 1;
