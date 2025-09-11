@@ -60,8 +60,8 @@ export default function SizeChartModal({ isOpen, onClose }: SizeChartModalProps)
         
         <div className="size-chart-modal-body">
           <Image
-            src="/images/size cahrt shirt.png"
-            alt="Shirt Size Chart"
+            src="/images/Your paragraph text.png"
+            alt="Sweatpants Size Chart"
             width={600}
             height={800}
             className="size-chart-image"
