@@ -72,7 +72,7 @@ export default function Banner() {
                 alt={`Homura Banner ${index + 1}`} 
                 fill
                 priority={index === 0}
-                quality={85}
+                quality={95}
                 className="banner-img"
                 sizes={isMobile ? "100vw" : "(max-width: 1200px) 80vw, 80vw"}
                 placeholder="blur"

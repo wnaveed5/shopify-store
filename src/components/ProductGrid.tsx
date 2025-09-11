@@ -251,6 +251,7 @@ export default function ProductGrid({ limit = 8, title }: ProductGridProps) {
                       className="product-image"
                       sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                       priority={false}
+                      quality={95}
                     />
                   ) : (
                     <div className="product-image-placeholder">

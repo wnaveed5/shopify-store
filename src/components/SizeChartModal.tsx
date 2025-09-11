@@ -63,10 +63,12 @@ export default function SizeChartModal({ isOpen, onClose, productType = 'sweatpa
           <Image
             src={productType === 'shirt' ? "/images/Beige and Black Minimalist Size Chart Instagram Post.png" : "/images/Your paragraph text.png"}
             alt={productType === 'shirt' ? "Shirt Size Chart" : "Sweatpants Size Chart"}
-            width={600}
-            height={800}
+            width={800}
+            height={1000}
             className="size-chart-image"
             priority
+            quality={95}
+            sizes="(max-width: 768px) 95vw, 600px"
           />
         </div>
       </div>

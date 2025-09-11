@@ -289,10 +289,12 @@ export default function ProductPage() {
               <Image
                 src={currentImage.url}
                 alt={currentImage.altText || product.title}
-                width={600}
-                height={600}
+                width={800}
+                height={800}
                 className="product-image"
                 priority
+                quality={95}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
               />
             )}
           </div>
@@ -308,9 +310,11 @@ export default function ProductPage() {
                   <Image
                     src={image.url}
                     alt={image.altText || product.title}
-                    width={80}
-                    height={80}
+                    width={120}
+                    height={120}
                     className="thumbnail-image"
+                    quality={90}
+                    sizes="120px"
                   />
                 </button>
               ))}

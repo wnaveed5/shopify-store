@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 interface CartItem {
   id: string;
@@ -138,10 +139,14 @@ export default function CartDrawer({
                   <div key={item.id} className="cart-drawer-item">
                     <div className="cart-drawer-item-image">
                       {item.image ? (
-                        <img
+                        <Image
                           src={item.image.url}
                           alt={item.image.altText || item.title}
-                          loading="lazy"
+                          width={80}
+                          height={80}
+                          className="cart-item-image"
+                          quality={90}
+                          sizes="80px"
                           onError={(e) => {
                             console.error('Image failed to load:', item.image?.url);
                             e.currentTarget.style.display = 'none';
