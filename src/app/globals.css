@@ -2766,3 +2766,116 @@ body {
     margin-top: 1rem;
   }
 }
+
+/* Size Chart Modal Styles */
+.size-chart-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 1rem;
+}
+
+.size-chart-modal-content {
+  background: white;
+  border-radius: 12px;
+  max-width: 90vw;
+  max-height: 90vh;
+  width: 600px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.size-chart-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: background-color 0.3s ease;
+}
+
+.size-chart-modal-close:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.size-chart-modal-close svg {
+  width: 20px;
+  height: 20px;
+  color: #000000;
+}
+
+.size-chart-modal-header {
+  padding: 2rem 2rem 1rem 2rem;
+  text-align: center;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.size-chart-modal-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #000000;
+  margin: 0;
+}
+
+.size-chart-modal-body {
+  padding: 1rem 2rem 2rem 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.size-chart-image {
+  width: 100%;
+  height: auto;
+  max-width: 500px;
+  border-radius: 8px;
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 768px) {
+  .size-chart-modal-content {
+    width: 95vw;
+    max-height: 95vh;
+  }
+  
+  .size-chart-modal-header {
+    padding: 1.5rem 1rem 0.5rem 1rem;
+  }
+  
+  .size-chart-modal-title {
+    font-size: 1.5rem;
+  }
+  
+  .size-chart-modal-body {
+    padding: 0.5rem 1rem 1rem 1rem;
+  }
+  
+  .size-chart-modal-close {
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 35px;
+    height: 35px;
+  }
+  
+  .size-chart-modal-close svg {
+    width: 18px;
+    height: 18px;
+  }
+}

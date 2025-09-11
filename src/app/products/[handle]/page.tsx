@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { fetchProductByHandle, fetchProducts, createCartAndGetCheckoutUrl } from '@/lib/shopify';
 import { useCart } from '@/contexts/CartContext';
+import SizeChartModal from '@/components/SizeChartModal';
 import Footer from '@/components/Footer';
 
 interface ProductVariant {
@@ -79,6 +80,7 @@ export default function ProductPage() {
   const [relatedProducts, setRelatedProducts] = useState<RelatedProduct[]>([]);
   const [relatedLoading, setRelatedLoading] = useState(false);
   const [checkoutLoading, setCheckoutLoading] = useState(false);
+  const [isSizeChartOpen, setIsSizeChartOpen] = useState(false);
   
   const { addItem, isLoading: cartLoading } = useCart();
 
@@ -379,7 +381,10 @@ export default function ProductPage() {
           </div>
 
           {/* Size Chart Button */}
-          <button className="size-chart-button">
+          <button 
+            className="size-chart-button"
+            onClick={() => setIsSizeChartOpen(true)}
+          >
             Size Chart
           </button>
 
@@ -433,6 +438,12 @@ export default function ProductPage() {
       </div>
       
       <Footer />
+      
+      {/* Size Chart Modal */}
+      <SizeChartModal 
+        isOpen={isSizeChartOpen} 
+        onClose={() => setIsSizeChartOpen(false)} 
+      />
     </div>
   );
 }
