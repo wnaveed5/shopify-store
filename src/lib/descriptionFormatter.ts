@@ -6,7 +6,7 @@ export function formatDescription(description: string): string {
   if (!description) return '';
   
   // Clean up the description first
-  let cleaned = description.trim();
+  const cleaned = description.trim();
   
   // Handle different formatting patterns
   // Split by periods followed by spaces, but preserve existing line breaks
