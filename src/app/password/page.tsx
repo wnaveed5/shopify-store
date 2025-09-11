@@ -45,12 +45,8 @@ export default function EarlyAccessPage() {
 
         if (response.ok) {
           setStatus('success');
-          // Set cookie for access
-          document.cookie = 'storeAccess=granted; path=/; max-age=86400'; // 24 hours
-          // Redirect to home page after a short delay
-          setTimeout(() => {
-            window.location.href = '/';
-          }, 2000);
+          // Don't set cookie or redirect for early access signup
+          // Users will stay on the password page
         } else {
           setStatus('error');
         }
@@ -201,7 +197,7 @@ export default function EarlyAccessPage() {
               
               {status === 'success' && !isPasswordMode && (
                 <div className="password-success">
-                  Thank you! You&apos;ll receive early access updates soon. Redirecting...
+                  Thank you! You&apos;ll receive early access updates soon.
                 </div>
               )}
               
