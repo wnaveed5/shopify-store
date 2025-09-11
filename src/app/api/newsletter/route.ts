@@ -101,20 +101,33 @@ export async function POST(request: NextRequest) {
       }),
     });
 
-    if (!profileResponse.ok) {
+    let profileId;
+    
+    if (profileResponse.ok) {
+      // Profile created successfully
+      const profileData = await profileResponse.json();
+      profileId = profileData.data.id;
+    } else {
+      // Check if it's a duplicate profile error (409)
       const profileError = await profileResponse.text();
-      console.error('Profile creation failed:', profileError);
-      return NextResponse.json(
-        { 
-          error: 'Failed to subscribe to newsletter',
-          details: profileError
-        },
-        { status: 500 }
-      );
+      const errorData = JSON.parse(profileError);
+      
+      if (profileResponse.status === 409 && errorData.errors?.[0]?.code === 'duplicate_profile') {
+        // Profile already exists, use the existing profile ID
+        profileId = errorData.errors[0].meta?.duplicate_profile_id;
+        console.log('Profile already exists, using existing profile ID:', profileId);
+      } else {
+        // Actual error
+        console.error('Profile creation failed:', profileError);
+        return NextResponse.json(
+          { 
+            error: 'Failed to subscribe to newsletter',
+            details: profileError
+          },
+          { status: 500 }
+        );
+      }
     }
-
-    const profileData = await profileResponse.json();
-    const profileId = profileData.data.id;
 
     // Add profile to Klaviyo list
     const klaviyoResponse = await fetch(`https://a.klaviyo.com/api/lists/${KLAVIYO_LIST_ID}/relationships/profiles`, {
