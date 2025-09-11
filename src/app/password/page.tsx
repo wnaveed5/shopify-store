@@ -22,8 +22,8 @@ export default function EarlyAccessPage() {
       if (isPasswordMode) {
         // Password mode
         if (password === 'homura2024') {
-          // Set cookie for access
-          document.cookie = 'storeAccess=granted; path=/; max-age=86400'; // 24 hours
+          // Set session-only cookie - expires when browser is closed
+          document.cookie = 'storeAccess=granted; path=/'; // No max-age = session cookie
           // Redirect to home page
           window.location.href = '/';
         } else {
