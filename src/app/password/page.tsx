@@ -6,7 +6,8 @@ import Head from 'next/head';
 export default function EarlyAccessPage() {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [countryCode, setCountryCode] = useState('+1');
+  const [countryCode, setCountryCode] = useState('+1|US');
+  const [selectedCountry, setSelectedCountry] = useState('US');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
@@ -37,8 +38,8 @@ export default function EarlyAccessPage() {
           },
           body: JSON.stringify({ 
             email, 
-            phone: phone ? `${countryCode}${phone}` : undefined, 
-            country: undefined 
+            phone: phone || undefined, 
+            country: selectedCountry || undefined 
           }),
         });
 
@@ -122,64 +123,69 @@ export default function EarlyAccessPage() {
                     />
                     <select
                       value={countryCode}
-                      onChange={(e) => setCountryCode(e.target.value)}
+                      onChange={(e) => {
+                        const selected = e.target.value;
+                        const [code, country] = selected.split('|');
+                        setCountryCode(code);
+                        setSelectedCountry(country);
+                      }}
                       className="country-code-select"
                       disabled={isLoading}
                     >
-                      <option value="+1">🇺🇸 +1</option>
-                      <option value="+1">🇨🇦 +1</option>
-                      <option value="+44">🇬🇧 +44</option>
-                      <option value="+61">🇦🇺 +61</option>
-                      <option value="+49">🇩🇪 +49</option>
-                      <option value="+33">🇫🇷 +33</option>
-                      <option value="+39">🇮🇹 +39</option>
-                      <option value="+34">🇪🇸 +34</option>
-                      <option value="+31">🇳🇱 +31</option>
-                      <option value="+46">🇸🇪 +46</option>
-                      <option value="+47">🇳🇴 +47</option>
-                      <option value="+45">🇩🇰 +45</option>
-                      <option value="+358">🇫🇮 +358</option>
-                      <option value="+81">🇯🇵 +81</option>
-                      <option value="+82">🇰🇷 +82</option>
-                      <option value="+86">🇨🇳 +86</option>
-                      <option value="+91">🇮🇳 +91</option>
-                      <option value="+55">🇧🇷 +55</option>
-                      <option value="+52">🇲🇽 +52</option>
-                      <option value="+54">🇦🇷 +54</option>
-                      <option value="+56">🇨🇱 +56</option>
-                      <option value="+57">🇨🇴 +57</option>
-                      <option value="+51">🇵🇪 +51</option>
-                      <option value="+27">🇿🇦 +27</option>
-                      <option value="+20">🇪🇬 +20</option>
-                      <option value="+234">🇳🇬 +234</option>
-                      <option value="+254">🇰🇪 +254</option>
-                      <option value="+212">🇲🇦 +212</option>
-                      <option value="+971">🇦🇪 +971</option>
-                      <option value="+966">🇸🇦 +966</option>
-                      <option value="+972">🇮🇱 +972</option>
-                      <option value="+90">🇹🇷 +90</option>
-                      <option value="+7">🇷🇺 +7</option>
-                      <option value="+48">🇵🇱 +48</option>
-                      <option value="+420">🇨🇿 +420</option>
-                      <option value="+36">🇭🇺 +36</option>
-                      <option value="+40">🇷🇴 +40</option>
-                      <option value="+359">🇧🇬 +359</option>
-                      <option value="+30">🇬🇷 +30</option>
-                      <option value="+351">🇵🇹 +351</option>
-                      <option value="+353">🇮🇪 +353</option>
-                      <option value="+32">🇧🇪 +32</option>
-                      <option value="+41">🇨🇭 +41</option>
-                      <option value="+43">🇦🇹 +43</option>
-                      <option value="+352">🇱🇺 +352</option>
-                      <option value="+64">🇳🇿 +64</option>
-                      <option value="+65">🇸🇬 +65</option>
-                      <option value="+852">🇭🇰 +852</option>
-                      <option value="+886">🇹🇼 +886</option>
-                      <option value="+66">🇹🇭 +66</option>
-                      <option value="+60">🇲🇾 +60</option>
-                      <option value="+62">🇮🇩 +62</option>
-                      <option value="+63">🇵🇭 +63</option>
-                      <option value="+84">🇻🇳 +84</option>
+                      <option value="+1|US">🇺🇸 +1</option>
+                      <option value="+1|CA">🇨🇦 +1</option>
+                      <option value="+44|GB">🇬🇧 +44</option>
+                      <option value="+61|AU">🇦🇺 +61</option>
+                      <option value="+49|DE">🇩🇪 +49</option>
+                      <option value="+33|FR">🇫🇷 +33</option>
+                      <option value="+39|IT">🇮🇹 +39</option>
+                      <option value="+34|ES">🇪🇸 +34</option>
+                      <option value="+31|NL">🇳🇱 +31</option>
+                      <option value="+46|SE">🇸🇪 +46</option>
+                      <option value="+47|NO">🇳🇴 +47</option>
+                      <option value="+45|DK">🇩🇰 +45</option>
+                      <option value="+358|FI">🇫🇮 +358</option>
+                      <option value="+81|JP">🇯🇵 +81</option>
+                      <option value="+82|KR">🇰🇷 +82</option>
+                      <option value="+86|CN">🇨🇳 +86</option>
+                      <option value="+91|IN">🇮🇳 +91</option>
+                      <option value="+55|BR">🇧🇷 +55</option>
+                      <option value="+52|MX">🇲🇽 +52</option>
+                      <option value="+54|AR">🇦🇷 +54</option>
+                      <option value="+56|CL">🇨🇱 +56</option>
+                      <option value="+57|CO">🇨🇴 +57</option>
+                      <option value="+51|PE">🇵🇪 +51</option>
+                      <option value="+27|ZA">🇿🇦 +27</option>
+                      <option value="+20|EG">🇪🇬 +20</option>
+                      <option value="+234|NG">🇳🇬 +234</option>
+                      <option value="+254|KE">🇰🇪 +254</option>
+                      <option value="+212|MA">🇲🇦 +212</option>
+                      <option value="+971|AE">🇦🇪 +971</option>
+                      <option value="+966|SA">🇸🇦 +966</option>
+                      <option value="+972|IL">🇮🇱 +972</option>
+                      <option value="+90|TR">🇹🇷 +90</option>
+                      <option value="+7|RU">🇷🇺 +7</option>
+                      <option value="+48|PL">🇵🇱 +48</option>
+                      <option value="+420|CZ">🇨🇿 +420</option>
+                      <option value="+36|HU">🇭🇺 +36</option>
+                      <option value="+40|RO">🇷🇴 +40</option>
+                      <option value="+359|BG">🇧🇬 +359</option>
+                      <option value="+30|GR">🇬🇷 +30</option>
+                      <option value="+351|PT">🇵🇹 +351</option>
+                      <option value="+353|IE">🇮🇪 +353</option>
+                      <option value="+32|BE">🇧🇪 +32</option>
+                      <option value="+41|CH">🇨🇭 +41</option>
+                      <option value="+43|AT">🇦🇹 +43</option>
+                      <option value="+352|LU">🇱🇺 +352</option>
+                      <option value="+64|NZ">🇳🇿 +64</option>
+                      <option value="+65|SG">🇸🇬 +65</option>
+                      <option value="+852|HK">🇭🇰 +852</option>
+                      <option value="+886|TW">🇹🇼 +886</option>
+                      <option value="+66|TH">🇹🇭 +66</option>
+                      <option value="+60|MY">🇲🇾 +60</option>
+                      <option value="+62|ID">🇮🇩 +62</option>
+                      <option value="+63|PH">🇵🇭 +63</option>
+                      <option value="+84|VN">🇻🇳 +84</option>
                     </select>
                   </div>
                 </>

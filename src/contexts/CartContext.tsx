@@ -38,9 +38,14 @@ export function CartProvider({ children }: { children: ReactNode }) {
   // Load cart from localStorage on mount
   useEffect(() => {
     const savedCartId = localStorage.getItem('shopify-cart-id');
+    console.log('=== CART CONTEXT INITIALIZATION ===');
+    console.log('Saved cart ID from localStorage:', savedCartId);
+    
     if (savedCartId) {
       setCartId(savedCartId);
       loadCart(savedCartId);
+    } else {
+      console.log('No saved cart ID found, starting with empty cart');
     }
   }, []);
 
@@ -54,10 +59,18 @@ export function CartProvider({ children }: { children: ReactNode }) {
       console.log('Cart response:', response);
       console.log('Cart response cart:', response.cart);
       
-      if (response.cart) {
+      if (response.cart && response.cart.lines && response.cart.lines.edges) {
         console.log('Cart found, processing items...');
         console.log('Cart lines:', response.cart.lines);
         console.log('Cart lines edges:', response.cart.lines?.edges);
+        
+        // Check if cart has items
+        if (response.cart.lines.edges.length === 0) {
+          console.log('Cart is empty, clearing local state');
+          setItems([]);
+          setCheckoutUrl(response.cart.checkoutUrl);
+          return;
+        }
         
         const cartItems = response.cart.lines.edges.map((edge: any) => {
           // Try multiple methods to get size
@@ -110,12 +123,32 @@ export function CartProvider({ children }: { children: ReactNode }) {
         console.log('Processed cart items:', cartItems);
         setItems(cartItems);
         setCheckoutUrl(response.cart.checkoutUrl);
-        console.log('Cart items set in state');
+        
+        // Save cart items to localStorage as backup
+        localStorage.setItem('shopify-cart-backup', JSON.stringify({
+          items: cartItems,
+          checkoutUrl: response.cart.checkoutUrl,
+          timestamp: Date.now()
+        }));
+        
+        console.log('Cart items set in state and backed up to localStorage');
       } else {
-        console.log('No cart found in response');
+        console.log('No cart found in response or cart is invalid');
+        console.log('Clearing invalid cart from localStorage');
+        // Clear invalid cart ID from localStorage
+        localStorage.removeItem('shopify-cart-id');
+        setCartId(null);
+        setItems([]);
+        setCheckoutUrl(null);
       }
     } catch (error) {
       console.error('Error loading cart:', error);
+      console.log('Cart loading failed, clearing cart state');
+      // Clear cart state on error
+      localStorage.removeItem('shopify-cart-id');
+      setCartId(null);
+      setItems([]);
+      setCheckoutUrl(null);
     } finally {
       setIsLoading(false);
     }

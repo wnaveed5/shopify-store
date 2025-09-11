@@ -8,8 +8,10 @@ export async function POST(request: NextRequest) {
     // Format phone number to E.164 format if provided
     let formattedPhone = null;
     if (phone && phone.length > 0) {
-      // Remove all non-digit characters
-      const digitsOnly = phone.replace(/\D/g, '');
+      // Remove all non-digit characters except leading +
+      const cleanPhone = phone.trim();
+      const hasPlus = cleanPhone.startsWith('+');
+      const digitsOnly = cleanPhone.replace(/\D/g, '');
       
       // Get country code based on country
       const countryCodes = {
@@ -26,14 +28,32 @@ export async function POST(request: NextRequest) {
       
       const countryCode = countryCodes[country as keyof typeof countryCodes] || '1'; // Default to US
       
-      // Handle different phone number formats
-      if (digitsOnly.length === 10) {
+      // Handle different phone number formats - be more strict for Klaviyo
+      if (hasPlus && digitsOnly.length >= 10 && digitsOnly.length <= 15) {
+        // Already has +, validate it's a reasonable format
+        formattedPhone = '+' + digitsOnly;
+      } else if (digitsOnly.length === 10) {
+        // Standard 10-digit number, add country code
         formattedPhone = '+' + countryCode + digitsOnly;
       } else if (digitsOnly.length === 11 && digitsOnly.startsWith(countryCode)) {
+        // 11-digit number starting with country code
         formattedPhone = '+' + digitsOnly;
-      } else if (phone.startsWith('+') && digitsOnly.length >= 10 && digitsOnly.length <= 15) {
-        formattedPhone = '+' + digitsOnly; // Already has +, just clean it
+      } else if (digitsOnly.length > 10 && digitsOnly.length <= 15) {
+        // Might already include country code, just add +
+        formattedPhone = '+' + digitsOnly;
       }
+      
+      // Additional validation for common formats
+      if (formattedPhone) {
+        // Ensure it's not too short or too long
+        const phoneDigits = formattedPhone.substring(1); // Remove the +
+        if (phoneDigits.length < 10 || phoneDigits.length > 15) {
+          console.log('Phone number invalid length:', phoneDigits.length);
+          formattedPhone = null;
+        }
+      }
+      
+      console.log('Phone formatting:', { original: phone, formatted: formattedPhone, country, countryCode });
     }
 
     // Validate email
@@ -70,10 +90,10 @@ export async function POST(request: NextRequest) {
           type: 'profile',
           attributes: {
             email: email,
+            ...(formattedPhone && { phone_number: formattedPhone }),
             properties: {
               first_name: '',
               last_name: '',
-              ...(formattedPhone && { phone_number: formattedPhone }),
               ...(country && { country: country }),
             }
           }
