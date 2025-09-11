@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { fetchProductByHandle, fetchProducts, createCartAndGetCheckoutUrl } from '@/lib/shopify';
 import { useCart } from '@/contexts/CartContext';
+import { formatDescription } from '@/lib/descriptionFormatter';
 import SizeChartModal from '@/components/SizeChartModal';
 import Footer from '@/components/Footer';
 
@@ -339,7 +340,11 @@ export default function ProductPage() {
 
           {product.description && (
             <div className="product-description">
-              <p>{product.description}</p>
+              {formatDescription(product.description).split('\n\n').map((paragraph, index) => (
+                <p key={index} className="description-paragraph">
+                  {paragraph}
+                </p>
+              ))}
             </div>
           )}
 

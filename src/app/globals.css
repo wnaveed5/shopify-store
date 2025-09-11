@@ -2977,6 +2977,23 @@ body {
   border-radius: 4px;
 }
 
+/* Product Description Formatting */
+.product-description {
+  margin: 1.5rem 0;
+  line-height: 1.6;
+}
+
+.description-paragraph {
+  margin: 0 0 1rem 0;
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.6;
+}
+
+.description-paragraph:last-child {
+  margin-bottom: 0;
+}
+
 @keyframes shimmer {
   0% {
     background-position: -200% 0;
