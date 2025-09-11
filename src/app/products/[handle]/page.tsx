@@ -442,7 +442,15 @@ export default function ProductPage() {
       {/* Size Chart Modal */}
       <SizeChartModal 
         isOpen={isSizeChartOpen} 
-        onClose={() => setIsSizeChartOpen(false)} 
+        onClose={() => setIsSizeChartOpen(false)}
+        productType={(() => {
+          const isShirt = handle?.includes('shirt') || handle?.includes('tee') || handle?.includes('t-shirt') || handle?.includes('bruce-lee-t');
+          console.log('🔍 Product handle:', handle);
+          console.log('🔍 Product title:', product?.title);
+          console.log('🔍 Is shirt?', isShirt);
+          console.log('🔍 Product type:', isShirt ? 'shirt' : 'sweatpants');
+          return isShirt ? 'shirt' : 'sweatpants';
+        })()}
       />
     </div>
   );

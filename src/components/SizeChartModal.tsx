@@ -6,9 +6,10 @@ import Image from 'next/image';
 interface SizeChartModalProps {
   isOpen: boolean;
   onClose: () => void;
+  productType?: 'shirt' | 'sweatpants';
 }
 
-export default function SizeChartModal({ isOpen, onClose }: SizeChartModalProps) {
+export default function SizeChartModal({ isOpen, onClose, productType = 'sweatpants' }: SizeChartModalProps) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -60,8 +61,8 @@ export default function SizeChartModal({ isOpen, onClose }: SizeChartModalProps)
         
         <div className="size-chart-modal-body">
           <Image
-            src="/images/Your paragraph text.png"
-            alt="Sweatpants Size Chart"
+            src={productType === 'shirt' ? "/images/Beige and Black Minimalist Size Chart Instagram Post.png" : "/images/Your paragraph text.png"}
+            alt={productType === 'shirt' ? "Shirt Size Chart" : "Sweatpants Size Chart"}
             width={600}
             height={800}
             className="size-chart-image"
