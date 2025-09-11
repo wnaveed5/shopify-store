@@ -444,7 +444,7 @@ export default function ProductPage() {
         isOpen={isSizeChartOpen} 
         onClose={() => setIsSizeChartOpen(false)}
         productType={(() => {
-          const isShirt = handle?.includes('shirt') || handle?.includes('tee') || handle?.includes('t-shirt') || handle?.includes('bruce-lee-t');
+          const isShirt = handle?.includes('shirt') || handle?.includes('tee') || handle?.includes('t-shirt') || handle?.includes('bruce-lee-t') || handle?.endsWith('-t');
           console.log('🔍 Product handle:', handle);
           console.log('🔍 Product title:', product?.title);
           console.log('🔍 Is shirt?', isShirt);
