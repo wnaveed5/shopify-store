@@ -1,6 +1,6 @@
 /**
  * Formats product descriptions with proper line breaks
- * Converts periods followed by spaces into line breaks for better readability
+ * Handles both HTML and plain text descriptions
  */
 export function formatDescription(description: string): string {
   if (!description) return '';
@@ -8,15 +8,38 @@ export function formatDescription(description: string): string {
   // Clean up the description first
   const cleaned = description.trim();
   
-  // Handle different formatting patterns
-  // Split by periods followed by spaces, but preserve existing line breaks
-  const sentences = cleaned
-    .split(/\.\s+/)
-    .filter(sentence => sentence.trim().length > 0)
-    .map(sentence => sentence.trim());
+  // Check if the description contains HTML tags
+  const hasHtmlTags = /<[^>]*>/g.test(cleaned);
   
-  // Join sentences with double line breaks for better spacing
-  return sentences.join('.\n\n');
+  if (hasHtmlTags) {
+    // Handle HTML-formatted descriptions
+    // Remove HTML tags and extract text content
+    const textContent = cleaned
+      .replace(/<[^>]*>/g, '') // Remove HTML tags
+      .replace(/&nbsp;/g, ' ') // Replace &nbsp; with regular spaces
+      .replace(/&amp;/g, '&') // Replace &amp; with &
+      .replace(/&lt;/g, '<') // Replace &lt; with <
+      .replace(/&gt;/g, '>') // Replace &gt; with >
+      .replace(/&quot;/g, '"') // Replace &quot; with "
+      .trim();
+    
+    // Split by periods followed by spaces
+    const sentences = textContent
+      .split(/\.\s+/)
+      .filter(sentence => sentence.trim().length > 0)
+      .map(sentence => sentence.trim());
+    
+    // Join sentences with double line breaks
+    return sentences.join('.\n\n');
+  } else {
+    // Handle plain text descriptions
+    const sentences = cleaned
+      .split(/\.\s+/)
+      .filter(sentence => sentence.trim().length > 0)
+      .map(sentence => sentence.trim());
+    
+    return sentences.join('.\n\n');
+  }
 }
 
 /**
