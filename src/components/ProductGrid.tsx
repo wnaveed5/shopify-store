@@ -245,10 +245,10 @@ export default function ProductGrid({ limit = 8, title }: ProductGridProps) {
                 <Link href={`/products/${product.handle}`}>
                   {image ? (
                     <>
-                      {(image.url.toLowerCase().includes('.gif') || product.handle === 'bruce-lee-t' || product.handle === 'lucy-liu-t') ? (
+                      {(image.url.toLowerCase().includes('.gif') || product.handle === 'bruce-lee-t' || product.handle === 'samurai-t') ? (
                       <img
                         src={product.handle === 'bruce-lee-t' ? '/images/Untitled design (2).gif' : 
-                              product.handle === 'lucy-liu-t' ? '/images/ezgif.com-animated-gif-maker (1).gif' : 
+                              product.handle === 'samurai-t' ? '/images/ezgif.com-animated-gif-maker (1).gif' : 
                               image.url}
                         alt={image.altText || product.title}
                         className="product-image gif-image"
