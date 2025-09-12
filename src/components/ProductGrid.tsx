@@ -252,7 +252,6 @@ export default function ProductGrid({ limit = 8, title }: ProductGridProps) {
                       sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                       priority={false}
                       quality={95}
-                      unoptimized={image.url.toLowerCase().includes('.gif')}
                     />
                   ) : (
                     <div className="product-image-placeholder">

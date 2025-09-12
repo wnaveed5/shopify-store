@@ -296,7 +296,6 @@ export default function ProductPage() {
                 priority
                 quality={95}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
-                unoptimized={currentImage.url.toLowerCase().includes('.gif')}
               />
             )}
           </div>
@@ -317,7 +316,8 @@ export default function ProductPage() {
                     className={`thumbnail-image ${image.url.toLowerCase().includes('.gif') ? 'gif-image' : ''}`}
                     quality={90}
                     sizes="120px"
-                    unoptimized={image.url.toLowerCase().includes('.gif')}
+                    loading="lazy"
+                    priority={index === 0}
                   />
                 </button>
               ))}

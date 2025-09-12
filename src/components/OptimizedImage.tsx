@@ -51,9 +51,6 @@ export default function OptimizedImage({
 
   // Check if the image is a GIF
   const isGif = src.toLowerCase().includes('.gif');
-  
-  // For GIFs, always use unoptimized to preserve animation and quality
-  const shouldOptimize = !isGif;
 
   useEffect(() => {
     // Reset states when src changes
@@ -106,13 +103,12 @@ export default function OptimizedImage({
           fill={fill}
           className={`optimized-image ${imageLoaded ? 'loaded' : 'loading'} ${isGif ? 'gif-image' : ''}`}
           priority={priority}
-          quality={shouldOptimize ? quality : 100}
+          quality={quality}
           sizes={sizes}
           placeholder={placeholder}
           blurDataURL={defaultBlurDataURL}
           onLoad={handleLoad}
           onError={handleError}
-          unoptimized={!shouldOptimize}
           style={{
             opacity: imageLoaded ? 1 : 0,
             transition: 'opacity 0.3s ease-in-out',
