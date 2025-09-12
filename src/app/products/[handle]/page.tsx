@@ -392,35 +392,38 @@ export default function ProductPage() {
           ))}
 
 
-          {/* Add to Cart and Checkout Buttons */}
-          <div className="product-buttons-container">
-            <button
-              onClick={handleAddToCart}
-              disabled={!selectedVariant?.availableForSale || cartLoading}
-              className={`add-to-cart-button ${!selectedVariant?.availableForSale ? 'disabled' : ''}`}
+          {/* Bottom Section - Buttons */}
+          <div className="product-bottom-section">
+            {/* Add to Cart and Checkout Buttons */}
+            <div className="product-buttons-container">
+              <button
+                onClick={handleAddToCart}
+                disabled={!selectedVariant?.availableForSale || cartLoading}
+                className={`add-to-cart-button ${!selectedVariant?.availableForSale ? 'disabled' : ''}`}
+              >
+                {cartLoading ? 'Adding...' : 
+                 !selectedVariant?.availableForSale ? 'Out of Stock' : 
+                 'Add to Cart'}
+              </button>
+              <button
+                onClick={handleCheckout}
+                disabled={!selectedVariant?.availableForSale || checkoutLoading}
+                className={`checkout-button ${!selectedVariant?.availableForSale ? 'disabled' : ''}`}
+              >
+                {checkoutLoading ? 'Processing...' : 
+                 !selectedVariant?.availableForSale ? 'Out of Stock' : 
+                 'Checkout'}
+              </button>
+            </div>
+
+            {/* Size Chart Button */}
+            <button 
+              className="size-chart-button"
+              onClick={() => setIsSizeChartOpen(true)}
             >
-              {cartLoading ? 'Adding...' : 
-               !selectedVariant?.availableForSale ? 'Out of Stock' : 
-               'Add to Cart'}
-            </button>
-            <button
-              onClick={handleCheckout}
-              disabled={!selectedVariant?.availableForSale || checkoutLoading}
-              className={`checkout-button ${!selectedVariant?.availableForSale ? 'disabled' : ''}`}
-            >
-              {checkoutLoading ? 'Processing...' : 
-               !selectedVariant?.availableForSale ? 'Out of Stock' : 
-               'Checkout'}
+              Size Chart
             </button>
           </div>
-
-          {/* Size Chart Button */}
-          <button 
-            className="size-chart-button"
-            onClick={() => setIsSizeChartOpen(true)}
-          >
-            Size Chart
-          </button>
 
         </div>
       </div>
