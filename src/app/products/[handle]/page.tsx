@@ -355,7 +355,6 @@ export default function ProductPage() {
                       alt={image.altText || product.title}
                       className="thumbnail-image gif-image webp-image"
                       style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                      loading={index === 0 ? "eager" : "lazy"}
                     />
                   ) : (
                     <Image

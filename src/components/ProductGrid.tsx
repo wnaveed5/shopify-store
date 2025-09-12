@@ -273,7 +273,6 @@ export default function ProductGrid({ limit = 8, title }: ProductGridProps) {
                         alt={image.altText || product.title}
                         className="product-image gif-image webp-image"
                         style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                        loading="lazy"
                       />
                     ) : (
                       <Image
@@ -283,6 +282,8 @@ export default function ProductGrid({ limit = 8, title }: ProductGridProps) {
                         className="product-image"
                         sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                         priority={false}
+                        placeholder="blur"
+                        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                         quality={100}
                       />
                       )}

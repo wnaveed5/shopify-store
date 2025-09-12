@@ -147,7 +147,6 @@ export default function CartDrawer({
                           className="cart-item-image"
                           quality={90}
                           sizes="80px"
-                          loading="lazy"
                           onError={(e) => {
                             console.error('Image failed to load:', item.image?.url);
                             e.currentTarget.style.display = 'none';
