@@ -51,6 +51,17 @@ export default function Banner() {
     imageType: mounted && isMobile ? 'mobile' : 'desktop'
   });
 
+  // Show loading state until mounted to prevent black screen flash
+  if (!mounted) {
+    return (
+      <div className="banner-container">
+        <div className="banner-loading">
+          <div className="loading-spinner"></div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="banner-container">
       <Swiper
