@@ -76,6 +76,7 @@ export default function HeaderProducts() {
                       width={80}
                       height={80}
                       className="header-product-image"
+                      loading="lazy"
                     />
                   ) : (
                     <div className="header-product-placeholder">

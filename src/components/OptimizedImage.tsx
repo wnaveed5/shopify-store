@@ -11,6 +11,7 @@ interface OptimizedImageProps {
   fill?: boolean;
   className?: string;
   priority?: boolean;
+  loading?: 'lazy' | 'eager';
   quality?: number;
   sizes?: string;
   placeholder?: 'blur' | 'empty';
@@ -33,6 +34,7 @@ export default function OptimizedImage({
   fill = false,
   className = '',
   priority = false,
+  loading = 'lazy',
   quality = 95,
   sizes,
   placeholder = 'blur',
@@ -103,6 +105,7 @@ export default function OptimizedImage({
           fill={fill}
           className={`optimized-image ${imageLoaded ? 'loaded' : 'loading'} ${isGif ? 'gif-image' : ''}`}
           priority={priority}
+          loading={loading}
           quality={quality}
           sizes={sizes}
           placeholder={placeholder}

@@ -273,6 +273,7 @@ export default function ProductGrid({ limit = 8, title }: ProductGridProps) {
                         alt={image.altText || product.title}
                         className="product-image gif-image webp-image"
                         style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        loading="lazy"
                       />
                     ) : (
                       <Image
