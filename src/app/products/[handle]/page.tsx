@@ -290,7 +290,7 @@ export default function ProductPage() {
               <>
                 {currentImage.url.toLowerCase().includes('.gif') ? (
                 <img
-                  src={currentImage.url}
+                  src={currentImage.url.split('?')[0]}
                   alt={currentImage.altText || product.title}
                   className="product-image gif-image"
                   style={{ width: '100%', height: 'auto' }}
@@ -325,7 +325,7 @@ export default function ProductPage() {
                 >
                   {image.url.toLowerCase().includes('.gif') ? (
                     <img
-                      src={image.url}
+                      src={image.url.split('?')[0]}
                       alt={image.altText || product.title}
                       className="thumbnail-image gif-image"
                       style={{ width: '100%', height: '100%', objectFit: 'cover' }}
