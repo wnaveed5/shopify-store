@@ -318,12 +318,18 @@ export default function ProductPage() {
               {images.map((image, index) => (
                 <button
                   key={index}
-                  onClick={() => setSelectedImageIndex(index)}
+                  onClick={() => {
+                    console.log('Thumbnail clicked:', index);
+                    setSelectedImageIndex(index);
+                  }}
                   className={`thumbnail-button ${index === selectedImageIndex ? 'active' : ''}`}
+                  style={{ cursor: 'pointer' }}
                 >
-                  {image.url.toLowerCase().includes('.gif') ? (
+                  {(image.url.toLowerCase().includes('.gif') || product.handle === 'bruce-lee-t' || product.handle === 'samurai-t') ? (
                     <img
-                      src={image.url}
+                      src={product.handle === 'bruce-lee-t' ? '/images/Untitled design (2).gif' : 
+                            product.handle === 'samurai-t' ? '/images/ezgif.com-animated-gif-maker (1).gif' : 
+                            image.url}
                       alt={image.altText || product.title}
                       className="thumbnail-image gif-image"
                       style={{ width: '100%', height: '100%', objectFit: 'cover' }}
