@@ -287,17 +287,25 @@ export default function ProductPage() {
         <div className="product-images-section">
           <div className="product-main-image">
             {currentImage && (
-              <Image
-                src={currentImage.url}
-                alt={currentImage.altText || product.title}
-                width={currentImage.url.toLowerCase().includes('.gif') ? 1080 : 1200}
-                height={currentImage.url.toLowerCase().includes('.gif') ? 1920 : 1200}
-                className={`product-image ${currentImage.url.toLowerCase().includes('.gif') ? 'gif-image' : ''}`}
-                priority
-                quality={100}
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
-                unoptimized={currentImage.url.toLowerCase().includes('.gif')}
-              />
+              {currentImage.url.toLowerCase().includes('.gif') ? (
+                <img
+                  src={currentImage.url}
+                  alt={currentImage.altText || product.title}
+                  className="product-image gif-image"
+                  style={{ width: '100%', height: 'auto' }}
+                />
+              ) : (
+                <Image
+                  src={currentImage.url}
+                  alt={currentImage.altText || product.title}
+                  width={1200}
+                  height={1200}
+                  className="product-image"
+                  priority
+                  quality={100}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
+                />
+              )}
             )}
           </div>
           
@@ -309,17 +317,25 @@ export default function ProductPage() {
                   onClick={() => setSelectedImageIndex(index)}
                   className={`thumbnail-button ${index === selectedImageIndex ? 'active' : ''}`}
                 >
-                  <Image
-                    src={image.url}
-                    alt={image.altText || product.title}
-                    width={image.url.toLowerCase().includes('.gif') ? 270 : 150}
-                    height={image.url.toLowerCase().includes('.gif') ? 480 : 150}
-                    className={`thumbnail-image ${image.url.toLowerCase().includes('.gif') ? 'gif-image' : ''}`}
-                    quality={100}
-                    sizes="150px"
-                    priority={index === 0}
-                    unoptimized={image.url.toLowerCase().includes('.gif')}
-                  />
+                  {image.url.toLowerCase().includes('.gif') ? (
+                    <img
+                      src={image.url}
+                      alt={image.altText || product.title}
+                      className="thumbnail-image gif-image"
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    />
+                  ) : (
+                    <Image
+                      src={image.url}
+                      alt={image.altText || product.title}
+                      width={150}
+                      height={150}
+                      className="thumbnail-image"
+                      quality={100}
+                      sizes="150px"
+                      priority={index === 0}
+                    />
+                  )}
                 </button>
               ))}
             </div>
