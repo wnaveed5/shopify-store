@@ -276,7 +276,7 @@ export default function ProductGrid({ limit = 8, title }: ProductGridProps) {
                       />
                     ) : (
                       <Image
-                        src={image.url}
+                        src={image.url.replace(/(_\d+x\d+)/g, '').split('?')[0] + '?width=800&quality=100'}
                         alt={image.altText || product.title}
                         fill
                         className="product-image"
@@ -284,7 +284,7 @@ export default function ProductGrid({ limit = 8, title }: ProductGridProps) {
                         priority={index < 2} // Prioritize first 2 products like swiper
                         placeholder="blur"
                         blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
-                        quality={95} // Match swiper quality
+                        quality={100} // Maximum quality for product grid
                         onLoad={() => {
                           console.log('Product image loaded successfully:', image.url);
                         }}

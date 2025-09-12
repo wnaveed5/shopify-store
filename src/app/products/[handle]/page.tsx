@@ -323,13 +323,13 @@ export default function ProductPage() {
                 />
               ) : (
                 <Image
-                  src={currentImage.url}
+                  src={currentImage.url.replace(/(_\d+x\d+)/g, '').split('?')[0] + '?width=2048&quality=100'}
                   alt={currentImage.altText || product.title}
                   width={1200}
                   height={1200}
                   className="product-image"
                   priority
-                  quality={95} // Match swiper quality
+                  quality={100} // Maximum quality for main image
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
                   placeholder="blur"
                   blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
@@ -363,7 +363,7 @@ export default function ProductPage() {
                     />
                   ) : (
                     <Image
-                      src={image.url}
+                      src={image.url.replace(/(_\d+x\d+)/g, '').split('?')[0] + '?width=300&quality=100'}
                       alt={image.altText || product.title}
                       width={150}
                       height={150}
