@@ -288,9 +288,11 @@ export default function ProductPage() {
           <div className="product-main-image">
             {currentImage && (
               <>
-                {(currentImage.url.toLowerCase().includes('.gif') || product.handle === 'bruce-lee-t') ? (
+                {(currentImage.url.toLowerCase().includes('.gif') || product.handle === 'bruce-lee-t' || product.handle === 'lucy-liu-t') ? (
                 <img
-                  src={product.handle === 'bruce-lee-t' ? '/images/Untitled design (2).gif' : currentImage.url}
+                  src={product.handle === 'bruce-lee-t' ? '/images/Untitled design (2).gif' : 
+                        product.handle === 'lucy-liu-t' ? '/images/ezgif.com-animated-gif-maker (1).gif' : 
+                        currentImage.url}
                   alt={currentImage.altText || product.title}
                   className="product-image gif-image"
                   style={{ width: '100%', height: 'auto' }}
