@@ -316,7 +316,6 @@ export default function ProductPage() {
                     className={`thumbnail-image ${image.url.toLowerCase().includes('.gif') ? 'gif-image' : ''}`}
                     quality={90}
                     sizes="120px"
-                    loading="lazy"
                     priority={index === 0}
                   />
                 </button>
