@@ -287,7 +287,8 @@ export default function ProductPage() {
         <div className="product-images-section">
           <div className="product-main-image">
             {currentImage && (
-              {currentImage.url.toLowerCase().includes('.gif') ? (
+              <>
+                {currentImage.url.toLowerCase().includes('.gif') ? (
                 <img
                   src={currentImage.url}
                   alt={currentImage.altText || product.title}
@@ -305,7 +306,8 @@ export default function ProductPage() {
                   quality={100}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
                 />
-              )}
+                )}
+              </>
             )}
           </div>
           

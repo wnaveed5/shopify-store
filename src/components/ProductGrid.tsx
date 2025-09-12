@@ -244,7 +244,8 @@ export default function ProductGrid({ limit = 8, title }: ProductGridProps) {
               <div className="product-image-container">
                 <Link href={`/products/${product.handle}`}>
                   {image ? (
-                    {image.url.toLowerCase().includes('.gif') ? (
+                    <>
+                      {image.url.toLowerCase().includes('.gif') ? (
                       <img
                         src={image.url}
                         alt={image.altText || product.title}
@@ -261,7 +262,8 @@ export default function ProductGrid({ limit = 8, title }: ProductGridProps) {
                         priority={false}
                         quality={100}
                       />
-                    )}
+                      )}
+                    </>
                   ) : (
                     <div className="product-image-placeholder">
                       <span>No Image</span>
