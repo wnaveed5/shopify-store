@@ -21,7 +21,7 @@ export default function EarlyAccessPage() {
     try {
       if (isPasswordMode) {
         // Password mode
-        if (password === 'yinyang') {
+        if (password.toLowerCase() === 'yinyang') {
           // Set session-only cookie - expires when browser is closed
           document.cookie = 'storeAccess=granted; path=/'; // No max-age = session cookie
           // Redirect to home page
