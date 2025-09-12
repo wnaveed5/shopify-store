@@ -292,10 +292,11 @@ export default function ProductPage() {
                 alt={currentImage.altText || product.title}
                 width={800}
                 height={800}
-                className="product-image"
+                className={`product-image ${currentImage.url.toLowerCase().includes('.gif') ? 'gif-image' : ''}`}
                 priority
                 quality={95}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
+                unoptimized={currentImage.url.toLowerCase().includes('.gif')}
               />
             )}
           </div>
@@ -313,9 +314,10 @@ export default function ProductPage() {
                     alt={image.altText || product.title}
                     width={120}
                     height={120}
-                    className="thumbnail-image"
+                    className={`thumbnail-image ${image.url.toLowerCase().includes('.gif') ? 'gif-image' : ''}`}
                     quality={90}
                     sizes="120px"
+                    unoptimized={image.url.toLowerCase().includes('.gif')}
                   />
                 </button>
               ))}

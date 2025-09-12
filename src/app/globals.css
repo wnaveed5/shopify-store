@@ -2968,6 +2968,15 @@ body {
 
 .gif-image {
   image-rendering: auto;
+  /* Ensure GIFs maintain their original quality */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  /* Prevent any compression artifacts */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 .cart-item-image {

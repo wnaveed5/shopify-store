@@ -52,8 +52,8 @@ export default function OptimizedImage({
   // Check if the image is a GIF
   const isGif = src.toLowerCase().includes('.gif');
   
-  // For GIFs, we might want to use unoptimized to preserve animation
-  const shouldOptimize = !isGif || !preserveGifAnimation;
+  // For GIFs, always use unoptimized to preserve animation and quality
+  const shouldOptimize = !isGif;
 
   useEffect(() => {
     // Reset states when src changes

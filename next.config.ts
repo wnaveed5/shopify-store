@@ -21,11 +21,12 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 60,
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-    // Handle GIFs properly - don't optimize them to preserve animation
-    unoptimized: false,
     // Higher quality device sizes for better image resolution
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384, 512, 640, 750, 828, 1080],
+    // Custom loader for GIFs to preserve quality
+    loader: 'custom',
+    loaderFile: './src/lib/imageLoader.ts',
   },
 };
 
