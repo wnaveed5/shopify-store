@@ -290,12 +290,13 @@ export default function ProductPage() {
               <Image
                 src={currentImage.url}
                 alt={currentImage.altText || product.title}
-                width={800}
-                height={800}
+                width={currentImage.url.toLowerCase().includes('.gif') ? 1080 : 1200}
+                height={currentImage.url.toLowerCase().includes('.gif') ? 1920 : 1200}
                 className={`product-image ${currentImage.url.toLowerCase().includes('.gif') ? 'gif-image' : ''}`}
                 priority
-                quality={95}
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
+                quality={100}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
+                unoptimized={currentImage.url.toLowerCase().includes('.gif')}
               />
             )}
           </div>
@@ -311,12 +312,13 @@ export default function ProductPage() {
                   <Image
                     src={image.url}
                     alt={image.altText || product.title}
-                    width={120}
-                    height={120}
+                    width={image.url.toLowerCase().includes('.gif') ? 270 : 150}
+                    height={image.url.toLowerCase().includes('.gif') ? 480 : 150}
                     className={`thumbnail-image ${image.url.toLowerCase().includes('.gif') ? 'gif-image' : ''}`}
-                    quality={90}
-                    sizes="120px"
+                    quality={100}
+                    sizes="150px"
                     priority={index === 0}
+                    unoptimized={image.url.toLowerCase().includes('.gif')}
                   />
                 </button>
               ))}
