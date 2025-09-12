@@ -247,7 +247,7 @@ export default function ProductGrid({ limit = 8, title }: ProductGridProps) {
                     <>
                       {image.url.toLowerCase().includes('.gif') ? (
                       <img
-                        src={image.url.split('?')[0]}
+                        src={`${image.url.split('?')[0]}?quality=100&format=original`}
                         alt={image.altText || product.title}
                         className="product-image gif-image"
                         style={{ width: '100%', height: '100%', objectFit: 'cover' }}
