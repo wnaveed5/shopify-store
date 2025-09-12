@@ -245,11 +245,11 @@ export default function ProductGrid({ limit = 8, title }: ProductGridProps) {
                 <Link href={`/products/${product.handle}`}>
                   {image ? (
                     <>
-                      {image.url.toLowerCase().includes('.gif') ? (
+                      {(image.url.toLowerCase().includes('.gif') || image.url.toLowerCase().includes('.webp')) ? (
                       <img
-                        src={`${image.url.split('?')[0]}?quality=100&format=original`}
+                        src={`${image.url.split('?')[0]}?quality=100&format=original&width=400&height=600`}
                         alt={image.altText || product.title}
-                        className="product-image gif-image"
+                        className="product-image gif-image webp-image"
                         style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                       />
                     ) : (

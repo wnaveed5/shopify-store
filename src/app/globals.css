@@ -1754,8 +1754,9 @@ body {
     padding: 0.25rem 0;
   }
   
-  /* Better GIF handling on mobile */
-  .gif-image {
+  /* Better GIF/WebP handling on mobile */
+  .gif-image,
+  .webp-image {
     width: 100% !important;
     height: auto !important;
     object-fit: contain !important;
@@ -2986,8 +2987,9 @@ body {
   opacity: 1;
 }
 
-.gif-image {
-  /* Preserve GIF quality and animation */
+.gif-image,
+.webp-image {
+  /* Preserve GIF/WebP quality and animation */
   image-rendering: auto !important;
   /* Prevent any compression artifacts */
   -webkit-backface-visibility: hidden;

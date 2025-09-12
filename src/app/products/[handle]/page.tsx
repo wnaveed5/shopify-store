@@ -288,11 +288,11 @@ export default function ProductPage() {
           <div className="product-main-image">
             {currentImage && (
               <>
-                {currentImage.url.toLowerCase().includes('.gif') ? (
+                {(currentImage.url.toLowerCase().includes('.gif') || currentImage.url.toLowerCase().includes('.webp')) ? (
                 <img
-                  src={`${currentImage.url.split('?')[0]}?quality=100&format=original`}
+                  src={`${currentImage.url.split('?')[0]}?quality=100&format=original&width=1080&height=1920`}
                   alt={currentImage.altText || product.title}
-                  className="product-image gif-image"
+                  className="product-image gif-image webp-image"
                   style={{ width: '100%', height: 'auto' }}
                 />
               ) : (
@@ -323,11 +323,11 @@ export default function ProductPage() {
                   className={`thumbnail-button ${index === selectedImageIndex ? 'active' : ''}`}
                   style={{ cursor: 'pointer' }}
                 >
-                  {image.url.toLowerCase().includes('.gif') ? (
+                  {(image.url.toLowerCase().includes('.gif') || image.url.toLowerCase().includes('.webp')) ? (
                     <img
-                      src={`${image.url.split('?')[0]}?quality=100&format=original`}
+                      src={`${image.url.split('?')[0]}?quality=100&format=original&width=270&height=480`}
                       alt={image.altText || product.title}
-                      className="thumbnail-image gif-image"
+                      className="thumbnail-image gif-image webp-image"
                       style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                     />
                   ) : (
