@@ -9,6 +9,7 @@ import { useCart } from '@/contexts/CartContext';
 import { formatDescription } from '@/lib/descriptionFormatter';
 import SizeChartModal from '@/components/SizeChartModal';
 import Footer from '@/components/Footer';
+import { GifSync, initializeGifSync, resetGifSync } from '@/lib/gifSync';
 
 interface ProductVariant {
   id: string;
@@ -153,6 +154,31 @@ export default function ProductPage() {
       loadProduct();
     }
   }, [handle]);
+
+  // Initialize GIF synchronization
+  useEffect(() => {
+    const gifSync = GifSync.getInstance();
+    
+    // Register GIFs when component mounts
+    const registerGifs = () => {
+      const gifImages = document.querySelectorAll('img[src*=".gif"], img[src*=".webp"]');
+      gifImages.forEach(img => {
+        gifSync.registerGif(img as HTMLImageElement);
+      });
+      
+      // Start synchronized playback
+      initializeGifSync();
+    };
+
+    // Small delay to ensure images are loaded
+    const timer = setTimeout(registerGifs, 200);
+
+    // Cleanup on unmount
+    return () => {
+      clearTimeout(timer);
+      resetGifSync();
+    };
+  }, [product]);
 
   const formatPrice = (amount: string, currencyCode: string) => {
     return new Intl.NumberFormat('en-US', {

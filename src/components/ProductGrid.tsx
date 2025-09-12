@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { fetchProducts } from '@/lib/shopify';
 import { useCart } from '@/contexts/CartContext';
+import { GifSync, initializeGifSync } from '@/lib/gifSync';
 
 interface Product {
   id: string;
@@ -80,6 +81,27 @@ export default function ProductGrid({ limit = 8, title }: ProductGridProps) {
 
     loadProducts();
   }, [limit]);
+
+  // Initialize GIF synchronization for product grid
+  useEffect(() => {
+    if (products.length > 0) {
+      const gifSync = GifSync.getInstance();
+      
+      // Register GIFs when products are loaded
+      const registerGifs = () => {
+        const gifImages = document.querySelectorAll('img[src*=".gif"], img[src*=".webp"]');
+        gifImages.forEach(img => {
+          gifSync.registerGif(img as HTMLImageElement);
+        });
+        
+        // Start synchronized playback
+        initializeGifSync();
+      };
+
+      // Small delay to ensure images are loaded
+      setTimeout(registerGifs, 300);
+    }
+  }, [products]);
 
   useEffect(() => {
     const handleScroll = () => {
