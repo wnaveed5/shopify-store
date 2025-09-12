@@ -325,7 +325,7 @@ export default function ProductPage() {
                   className={`thumbnail-button ${index === selectedImageIndex ? 'active' : ''}`}
                   style={{ cursor: 'pointer' }}
                 >
-                  {(image.url.toLowerCase().includes('.gif') || product.handle === 'bruce-lee-t' || product.handle === 'samurai-t') ? (
+                  {(image.url.toLowerCase().includes('.gif') || (product.handle === 'bruce-lee-t' && index === 0) || (product.handle === 'samurai-t' && index === 0)) ? (
                     <img
                       src={product.handle === 'bruce-lee-t' ? '/images/Untitled design (2).gif' : 
                             product.handle === 'samurai-t' ? '/images/ezgif.com-animated-gif-maker (1).gif' : 
